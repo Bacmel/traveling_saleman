@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>Objet non trouvé!</title>
+<link rev="made" href="mailto:root@elib" />
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/ 
+    body { color: #000000; background-color: #FFFFFF; }
+    a:link { color: #0000CC; }
+    p, address {margin-left: 3em;}
+    span {font-size: smaller;}
+/*]]>*/--></style>
+</head>
+
+<body>
+<h1>Objet non trouvé!</h1>
+<p>
+
+
+    L'URL requise n'a pu etre trouv&eacute;e sur ce serveur.
+
+  
+
+    La r&eacute;f&eacute;rence sur
+    <a href="http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/index.html">la page
+    cit&eacute;e</a>
+    semble &ecirc;tre erron&eacute;e ou perim&eacute;e. Nous vous prions
+    d'informer l'auteur de
+    <a href="http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/index.html">cette page</a>
+    de cette erreur.
+
+  
+
+</p>
+<p>
+Si vous pensez qu'il s'agit d'une erreur du serveur, veuillez contacter le 
+<a href="mailto:root@elib">gestionnaire du site</a>.
+
+</p>
+
+<h2>Error 404</h2>
+<address>
+  <a href="/">elib.zib.de</a><br />
+  
+  <span>Fri May  3 15:02:52 2013<br />
+  Apache/2.2.13 (Linux/SUSE)</span>
+</address>
+</body>
+</html>
+
