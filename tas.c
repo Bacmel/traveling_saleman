@@ -44,8 +44,19 @@ void tas_monter(Tas t, int s) {
 
 void tas_descendre(Tas t, int s) {
 	int posS = t->pos[s];
+	int taille = t->elems[0];
 	int pos = posS * 2;
-	if(pos
+	//printf("rec descendre %d %d\n",posS, taille);
+	if(pos > taille) { return; } // Pas de fils gauche donc pas de droit non plus
+	double minVal = t->val[pos];
+	if(pos + 1 <= taille && t->val[pos+1] < minVal) {
+		pos++;
+	}
+	//printf("%lf \t %lf\n", minVal, t->val[posS]);
+	if(minVal < t->val[posS]){
+		tas_echanger(t, pos, posS);
+		tas_descendre(t, posS);
+	}
 }
 
 void tas_inserer(Tas t, int s, Coordonnees c) {
@@ -62,9 +73,10 @@ void tas_inserer(Tas t, int s, Coordonnees c) {
 }
 
 void tas_retirer(Tas t, int s){
-	tas_echanger(t, t->pos[s], t->elems[0]--);
-	
-	tas_descendre(t, s);
+	int pos = t->pos[s];
+	tas_echanger(t, pos, t->elems[0]);
+	t->elems[0]--;
+	tas_descendre(t, t->elems[pos]);
 }
 
 int tas_retirer_tete(Tas t){
