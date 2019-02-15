@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <math.h>
 #include "tas.h"
 
@@ -12,6 +13,8 @@ Tas creer_tas(int taille){
 	t->elems[0] = 0;
 	t->val[0] = 0;
 	t->pos[0] = 0;
+	
+	return t;
 }
 void detruire_tas(Tas * pTas){
 	free((*pTas)->elems);
@@ -41,21 +44,19 @@ void tas_monter(Tas t, int s) {
 
 void tas_descendre(Tas t, int s) {
 	int posS = t->pos[s];
-	if(t->val[posS * 2] < t->val[posS] && posS * 2 <= t->elems[0]){
-		tas_echanger(t, posS, posS * 2);
-	} else if (t->val[posS * 2 + 1] < t->val[posS] && posS * 2 + 1 <= t->elems[0]) {
-		tas_echanger(t, posS, posS * 2 + 1);
-	}
+	int pos = posS * 2;
+	if(pos
 }
 
 void tas_inserer(Tas t, int s, Coordonnees c) {
 	double sX = c->clist[s]->coordx;
 	double sY = c->clist[s]->coordy;
 	double value = sqrt(sX * sX + sY * sY);
-	
-	t->elems[t->elems[0]] = s;
-	t->val[t->elems[0]] = value;
-	t->pos[s] = t->elems[0]++;
+	int taille = ++t->elems[0];
+
+	t->elems[taille] = s;
+	t->val[taille] = value;
+	t->pos[s] = taille;
 	
 	tas_monter(t, s);
 }
@@ -72,4 +73,22 @@ int tas_retirer_tete(Tas t){
 	tas_retirer(t, s);
 	
 	return s;
+}
+
+void tas_afficher(Tas t){
+	printf("Affichage du tas comportant %d / %d elements:\n", t->elems[0], t->maxTaille);
+	int pow2 = 1;
+	int i;
+	for(i = 1; i <= t->elems[0]; i++) {
+		printf("%d:%lf\t", t->elems[i], t->val[i]);
+		if(i == pow2) {
+			printf("\n");
+			pow2 = 2*pow2 +1;
+		}
+	}
+	printf("\n");
+}
+
+int tas_taille(Tas t){
+	return t->elems[0];	
 }
