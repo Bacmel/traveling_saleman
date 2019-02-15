@@ -1,11 +1,17 @@
-main : projet.o tas.o graph.o
-	gcc projet.o tas.o graph.o -o main -lm
+projet : projet.o tas.o graph.o
+	gcc projet.o tas.o graph.o -o projet -lm
 
-projet.o : projet.c tas.h
+run: projet
+	./projet berlin52
+
+projet.o : projet.c tas.h graph.h
 	gcc -c projet.c
 
-tas.o : tas.c tas.h
-	gcc -c tas.c
+graph.o : graph.c graph.h
+	gcc -c graph.c
+
+tas.o : graph.o tas.c tas.h
+	gcc -c tas.c -lm
 
 graph.o : graph.c graph.h
 	gcc -c graph.c
