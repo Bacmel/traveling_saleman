@@ -3,6 +3,6 @@
 #include"tas.h"
 #include"graph.h"
 
-graph* prim(Tas t);
+Graph* prim(Graph* g);
 
 #endif

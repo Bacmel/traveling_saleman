@@ -1,6 +1,6 @@
 #include"prim.h"
 
-Graphe* prim(Tas* t){
+Graphe* prim(Graph* g){
     Graphe* g = (Graphe*)creer_graphe(tas_taille(t));
     int i;
     while(tas_taille(t)){
