@@ -83,6 +83,7 @@ void tas_inserer(Tas t, int s, double valeur) {
 
 void tas_update(Tas t, int s, double newValeur) {
 	int pos = t->pos[s];
+	if(pos==-1){return;}
 	double oldValeur = t->val[pos];
 	t->val[pos] = newValeur;
 
@@ -98,6 +99,7 @@ void tas_retirer(Tas t, int s) {
 	tas_echanger(t, pos, t->elems[0]);
 	t->elems[0]--;
 	tas_descendre(t, t->elems[pos]);
+	t->pos[s]=-1;
 }
 
 int tas_retirer_tete(Tas t) {
