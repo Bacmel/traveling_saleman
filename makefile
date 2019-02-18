@@ -1,5 +1,5 @@
-projet : projet.o tas.o graph.o prim.o
-	gcc projet.o tas.o graph.o prim.o -o projet -lm
+projet : projet.o tas.o graph.o prim.o utils.o
+	gcc projet.o tas.o graph.o prim.o utils.o -o projet -lm
 
 projet.o : projet.c tas.h
 	gcc -c projet.c
@@ -13,5 +13,8 @@ graph.o : graph.c graph.h
 prim.o : prim.c prim.h
 	gcc -c prim.c
 
+utils.o : utils.c utils.h
+	gcc -c utils.c
+
 clean :
-rm -f *.o
+	rm -f *.o *.dat *.gnu
