@@ -10,10 +10,13 @@ Tas creer_tas(int taille) {
 	t->val = (double *) malloc(sizeof(double) * (taille + 1));
 	t->pos = (int *) malloc(sizeof(int) * (taille + 1));
 
+	int i;
+	for(i = 0; i < taille; i++) {
+		t->elems[i] = -1;
+		t->val[i] = -1;
+		t->pos[i] = -1;
+	}
 	t->elems[0] = 0;
-	t->val[0] = 0;
-	t->pos[0] = 0;
-
 	return t;
 }
 
