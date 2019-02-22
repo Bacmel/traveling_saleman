@@ -10,10 +10,13 @@ Tas creer_tas(int taille) {
 	t->val = (double *) malloc(sizeof(double) * (taille + 1));
 	t->pos = (int *) malloc(sizeof(int) * (taille + 1));
 
+	int i;
+	for(i = 0; i < taille; i++) {
+		t->elems[i] = -1;
+		t->val[i] = -1;
+		t->pos[i] = -1;
+	}
 	t->elems[0] = 0;
-	t->val[0] = 0;
-	t->pos[0] = 0;
-
 	return t;
 }
 
@@ -83,6 +86,7 @@ void tas_inserer(Tas t, int s, double valeur) {
 
 void tas_update(Tas t, int s, double newValeur) {
 	int pos = t->pos[s];
+	if(pos==-1){return;}
 	double oldValeur = t->val[pos];
 	t->val[pos] = newValeur;
 
@@ -98,6 +102,7 @@ void tas_retirer(Tas t, int s) {
 	tas_echanger(t, pos, t->elems[0]);
 	t->elems[0]--;
 	tas_descendre(t, t->elems[pos]);
+	t->pos[s]=-1;
 }
 
 int tas_retirer_tete(Tas t) {
