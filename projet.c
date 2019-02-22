@@ -11,6 +11,7 @@
 #include "graph.h"
 #include "tas.h"
 #include "prim.h"
+#include "utils.h"
 
 /********/
 /* main */

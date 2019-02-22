@@ -6,5 +6,6 @@
 
 Graphe prim(Coordonnees c);
 Graphe prim_exclu(Coordonnees c, int* tab, int n);
+Graphe prim_exclu_pi(Coordonnees c, double pi[], int taillePi, int exclus[], int tailleExclus);
 
 #endif
