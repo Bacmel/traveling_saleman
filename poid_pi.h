@@ -3,8 +3,7 @@
 
 #include "graph.h"
 
-#define UB 100000
-
+#define UB 7542
 
 
 /**
@@ -29,8 +28,9 @@ double t(Graphe g, double **distance_tab, double pi[], double lambda);
 
 double pi_s(int s, double *pi, Graphe g, double **distance_tab, double lambda);
 
-double * construire_nouv_pi(double pi[], int taillePi, Graphe g, double **distance_tab, double lambda);
+double *construire_nouv_pi(double pi[], Graphe g, double **distance_tab, double lambda);
 
-Graphe opt(Coordonnees c);
+//Graphe opt(Coordonnees c);
+Graphe borneInferieur(Coordonnees c);
 
 #endif //POID_PI_H

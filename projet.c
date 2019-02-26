@@ -26,8 +26,9 @@ int main(int argc, char *argv[]) {
 
 	/* lecture de l'instance */
 	c = lecture_instance(argv[1]);
+	g = borneInferieur(c);
 	//g = opt(c);
-	double pi[c->n];
+	/*double pi[c->n];
 	for (int i = 0; i < c->n; ++i) {
 		pi[i] = 0;
 	}
@@ -35,7 +36,7 @@ int main(int argc, char *argv[]) {
 	double **tab = creer_distance_tab(c);
 	printf("omega = %lf\n", omega_pi_graphe(g,tab,pi));
 	printf("t = %lf\n", t(g, tab, pi, 2));
-	detruire_distance_tab(&tab,c->n);
+	detruire_distance_tab(&tab,c->n);*/
 	//for(int i=0;i<c->n;i++){
 	//g = prim_exclu(c, &i, 1);
 	//afficher_graphe(c, g);

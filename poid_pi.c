@@ -43,11 +43,11 @@ double omega_pi_graphe(Graphe g, double **distance_tab, double pi[]) {
 	struct voisins *voisin;
 	double omega = 0;
 
-	for (i = 0; i < g->n; ++i) {
+	for (i = 0; i < graphe_nb_sommets(g); ++i) {
 		voisin = g->alist[i];
-		for (j = 0; j < voisin->nbcell; ++j) {
+		for (j = 0; j < graphe_degre(g, i); ++j) {
 			if (i < voisin->list[j]) {//On ne compte omega_pi que si i < j pour compter de facon unique le poid de chaque arete
-				omega += omega_pi(distance_tab, pi, i, j);
+				omega += omega_pi(distance_tab, pi, i, voisin->list[j]);
 			}
 		}
 	}
@@ -55,39 +55,93 @@ double omega_pi_graphe(Graphe g, double **distance_tab, double pi[]) {
 }
 
 double t(Graphe g, double **distance_tab, double pi[], double lambda) {
-	double sumD = 0;
-	double d;
+	double sumD = 0; // Somme pour i des d_i - 2 au carré
+	double sumPi = 0; // Somme pour i des pi[i]
+	double d;// d_i - 2
 	int i;
-	for (i = 0; i < g->n; ++i) {
-		d = g->alist[i]->d - 2;
+	for (i = 0; i < graphe_nb_sommets(g); ++i) {
+		d = graphe_degre(g, i) - 2;
 		sumD += d * d;
+		sumPi += pi[i];
 	}
-	return lambda * (UB - omega_pi_graphe(g, distance_tab, pi)) / sumD;
+	return lambda * (UB - omega_pi_graphe(g, distance_tab, pi) + 2 * sumPi) / sumD;
 }
 
 double pi_s(int s, double *pi, Graphe g, double **distance_tab, double lambda) {
-	return pi[s] + t(g, distance_tab, pi, lambda) * (g->alist[s]->d - 2);
+	return pi[s] + t(g, distance_tab, pi, lambda) * (graphe_degre(g, s) - 2);
 }
 
-double *construire_nouv_pi(double pi[], int taillePi, Graphe g, double **distance_tab, double lambda) {
-	double *nPi = (double *) malloc(sizeof(double) * taillePi);
+double *construire_nouv_pi(double pi[], Graphe g, double **distance_tab, double lambda) {
+	double *nPi = (double *) malloc(sizeof(double) * graphe_nb_sommets(g));
 	int i;
 
-	for (i = 0; i < taillePi; ++i) {
+	for (i = 0; i < graphe_nb_sommets(g); ++i) {
 		nPi[i] = pi_s(i, pi, g, distance_tab, lambda);
 	}
 
 	return nPi;
 }
-void affiche_mat(double ** mat, int tailleMat){
-	for (int i = 0;i < tailleMat; ++i) {
+
+void affiche_mat(double **mat, int tailleMat) {
+	for (int i = 0; i < tailleMat; ++i) {
 		for (int j = 0; j < tailleMat; ++j) {
 			printf("%.2lf  ", mat[i][j]);
 		}
 		printf("\n");
 	}
 }
-Graphe opt(Coordonnees c) {
+
+Graphe borneInferieur(Coordonnees c) {
+	Graphe g = NULL, gOld = NULL;
+	double **distance_tab = creer_distance_tab(c);
+	double *pi = (double *) malloc(sizeof(double) * c->n), *piOld = NULL;
+	double lambda = 2.;
+	double longueur = 0.;
+	int iter = 0; // compteur d'iteration
+	int nextUpdate = 2 * c->n;//nombre d'iterations avant mise a jour
+	int updateIter = nextUpdate;//iteration de mise a jour
+	int s;//un sommet du graphe
+
+	for (s = 0; s < c->n; s++) { pi[s] = 0; }// initialisation du tableau pi à 0
+
+	while (nextUpdate > 1) {
+		printf("Tour %d\n", iter);
+		if (gOld != NULL) { detruire_graphe(gOld); }
+		gOld = g;
+		g = graph1arbre_pi(c, 0, pi, c->n);
+		if (piOld != NULL) { free(piOld); }
+		piOld = pi;
+		pi = construire_nouv_pi(piOld, g, distance_tab, lambda);
+
+		if (iter == updateIter) {
+			lambda /= 2;
+			nextUpdate /= 2;
+			updateIter += nextUpdate;
+			printf("update de lambda! lambda= %lf, nextUpdate = %d\n", lambda, nextUpdate);
+		}
+		iter++;
+	}
+	if (piOld != NULL) {
+		longueur = omega_pi_graphe(g, distance_tab, piOld);
+		printf("Omega_pi(g) = %lf\npi : ", longueur);
+		for (s = 0; s < c->n; ++s) {
+			longueur -= 2 * piOld[s];
+			printf("%lf, ", piOld[s]);
+		}
+		printf("\nScore atteint: %lf\n", longueur);
+	}
+	printf("iter= %d\n", iter);
+	/* Libération de la mémoire */
+	if (gOld != NULL) { detruire_graphe(gOld); }
+	if (piOld != NULL) { free(piOld); }
+	if (pi != NULL) { free(pi); }
+	if (distance_tab != NULL) { detruire_distance_tab(&distance_tab, c->n); }
+
+	return g;
+}
+
+
+/*Graphe opt(Coordonnees c) {
 	double lambda = 2;
 	double **distance_tab = creer_distance_tab(c);
 	double score = 0;
@@ -130,4 +184,4 @@ Graphe opt(Coordonnees c) {
 	free(pi);
 
 	return g;
-}
+}*/
