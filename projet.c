@@ -13,6 +13,8 @@
 #include "prim.h"
 #include "utils.h"
 #include "poid_pi.h"
+#include "glouton.h"
+#include "union_find.h"
 
 /********/
 /* main */
@@ -26,7 +28,8 @@ int main(int argc, char *argv[]) {
 
 	/* lecture de l'instance */
 	c = lecture_instance(argv[1]);
-	g = borneInferieur(c);
+	g = algo(c);
+	//g = borneInferieur(c);
 	//g = opt(c);
 	/*double pi[c->n];
 	for (int i = 0; i < c->n; ++i) {

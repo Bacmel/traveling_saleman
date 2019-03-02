@@ -58,3 +58,26 @@ Graphe graph1arbre_pi(Coordonnees c, int s, double pi[], int taillePi) {
 	detruire_tas(&tas);
 	return graphe;
 }
+
+void a_remove(int *tab, int n, int s){
+    int hasRemove = 0;
+    int i;
+
+    for(i = 0; i < n-1 ; i++){
+        if(tab[i] == s){
+            hasRemove = 1;
+        }
+        if(hasRemove) {
+            tab[i] = tab[i + 1];
+        }
+    }
+}
+
+void graphe_supprimer_arete(Graphe g, int s1, int s2){
+    if(!graphe_arete_existe(g, s1, s2)) { return; }
+
+    a_remove(g->alist[s1]->list, g->alist[s1]->d, s2);
+    g->alist[s1]->d--;
+    a_remove(g->alist[s2]->list, g->alist[s2]->d, s1);
+    g->alist[s2]->d--;
+}
