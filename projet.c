@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
 
 	/* lecture de l'instance */
 	c = lecture_instance(argv[1]);
-	g = algo(c);
+	g = algo2opt(c);
 	//g = borneInferieur(c);
 	//g = opt(c);
 	/*double pi[c->n];

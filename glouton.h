@@ -11,10 +11,21 @@ typedef struct arete{
     double dist;
 } Arete;
 
+typedef struct hamiltonien{
+    int n;
+    size_t* pred;
+    size_t* succ;
+} Hamiltonien;
+
 Arete* creation_arete(Coordonnees c);
 void fusion(Arete* a, Arete* a1, int n1, Arete* a2, int n2);
 Arete* tri_fusion_arete(Arete* a, int n);
 void detruire_arete(Arete* a);
+Hamiltonien* creation_hamiltonien(Graphe g);
+void change_hamiltonien(Hamiltonien* H, size_t i, size_t i2, size_t j, size_t j2);
+void detruire_hamiltonien(Hamiltonien* H);
 Graphe algo(Coordonnees c);
+Graphe algo2opt(Coordonnees c);
+Graphe resim(Coordonnees c);
 
 #endif
