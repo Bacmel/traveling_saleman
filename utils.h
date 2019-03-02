@@ -4,6 +4,9 @@
 
 #ifndef UTILS_H
 #define UTILS_H
+
+typedef int Sommet;
+
 /* Calcul la distance entre deux sommets 's1' et 's2' */
 double distance(Coordonnees c, int s1, int s2);
 bool est_present(int* tab, int n, int i);
