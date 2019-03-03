@@ -6,14 +6,14 @@ Soient $A$ le 1-arbre optimal et $ T $ la tournée optimale.
 		\item Si $ d(s_{i}) = 1 $, alors cette feuille manque d'un voisin pour faire parti d'un tour.
 		\item Si $ d(s_{i}) > 2$, alors ce sommet possêde "trop" de voisins pour faire parti d'un tour. 
 	\end{itemize}
-	Or les arêtes d'un 1-arbre optimale, sont toutes optimales au sens de leur longueur. Donc l'arête ajoutée aux feuilles de $ A $ pour faire de $ A $ une tournée ne sont pas de longueur optimale. Soit $ (a_{i})_{i \in \mathbb{N}}  $ la longueur des arêtes ajoutées. De plus, les arêtes retirées aux noeuds de degrés supérieur à $ 2 $ sont optimales. Soit $ (r_{i})_{i \in \mathbb{N}} $ la longueur de chaque arête retirée. Alors on a:
+	Or les arêtes d'un 1-arbre optimale, sont toutes optimales au sens de leur poid. Donc l'arête ajoutée aux feuilles de $ A $ pour faire de $ A $ une tournée ne sont pas de poid optimale. Soit $ (a_{i})_{i \in \mathbb{N}}  $ le poid des arêtes ajoutées. De plus, les arêtes retirées aux noeuds de degrés supérieur à $ 2 $ sont optimales. Soit $ (r_{i})_{i \in \mathbb{N}} $ le poid de chaque arête retirée. Alors on a:
 	\begin{align*}
 		d(T) &= d(A) + \sum_{i} a_{i} - \sum_{i} r_{i}\\
-		\intertext{Or les $ r_{i} $ sont de longueur optimale contrairement aux $ a_{i} $. Donc,}
+		\intertext{Or les $ r_{i} $ sont de poid optimale contrairement aux $ a_{i} $. Donc,}
 		\sum_{i} r_{i} &\leq \sum_{i} a_{i}
 		\intertext{Donc,}
 		d(T) \geq d(A)
 	\end{align*}
 \end{itemize}
 
-Donc un 1-arbre optimale est de "longueur" inférieure ou égale à la tournée optimale. Donc un 1-arbre optimale est une borne inférieur de la longueur d'une tournée optimale.
+Donc un 1-arbre optimale est de poid inférieure ou égale à la tournée optimale. Donc un 1-arbre optimale est une borne inférieur de la longueur d'une tournée optimale.
