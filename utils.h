@@ -5,12 +5,11 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-typedef int Sommet;
-
 /* Calcul la distance entre deux sommets 's1' et 's2' */
 double distance(Coordonnees c, int s1, int s2);
 bool est_present(int* tab, int n, int i);
 Graphe graph1arbre(Coordonnees c, int s);
 double score(Coordonnees c, double pi[], int s1, int s2);
 Graphe graph1arbre_pi(Coordonnees c, int s, double pi[], int taillePi);
+
 #endif

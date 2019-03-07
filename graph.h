@@ -32,6 +32,7 @@ struct coordonnees {
 
 /*type coordonnees */
 typedef struct coordonnees *Coordonnees;
+typedef int Sommet;
 
 /*************************************/
 /* 	!!!!!!!	ATTENTION !!!!!!     */

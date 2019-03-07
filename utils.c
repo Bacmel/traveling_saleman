@@ -9,6 +9,8 @@ double distance(Coordonnees c, int s1, int s2) {
 }
 
 bool est_present(int *tab, int n, int i) {
+	if (tab == NULL) { return false; }
+
 	int j;
 	for (j = 0; j < n; j++) {
 		if (tab[j] == i) {
@@ -37,7 +39,9 @@ Graphe graph1arbre(Coordonnees c, int s) {
 }
 
 double score(Coordonnees c, double pi[], int s1, int s2) {
-	return pi[s1] + pi[s2] + distance(c, s1, s2);
+	double score = distance(c, s1, s2);
+	if (pi != NULL) { score += pi[s1] + pi[s2]; }
+	return score;
 }
 
 Graphe graph1arbre_pi(Coordonnees c, int s, double pi[], int taillePi) {
