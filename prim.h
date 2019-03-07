@@ -5,10 +5,10 @@
 #include"graph.h"
 #include"utils.h"
 
-Graphe prim(Coordonnees c);
+Graphe prim(Coordonnees c, double **distances_mat);
 
-Graphe prim_exclu(Coordonnees c, Sommet exclus[], int tailleExclus);
+Graphe prim_exclu(Coordonnees c, double **distances_mat, Sommet exclus[], int tailleExclus);
 
-Graphe prim_exclu_pi(Coordonnees c, Sommet exclus[], int tailleExclus, double pi[]);
+Graphe prim_exclu_pi(Coordonnees c, double **distances_mat, Sommet exclus[], int tailleExclus, double pi[]);
 
 #endif

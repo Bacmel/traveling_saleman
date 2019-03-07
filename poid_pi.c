@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "poid_pi.h"
 #include "utils.h"
+#include "1arbre.h"
 
 
 double omega_pi(double **distance_tab, double pi[], int s1, int s2) {
@@ -77,7 +78,7 @@ Graphe borne_inferieur(Coordonnees coordonnees, double ub) {
 		printf("Tour %d\n", iter);
 		if (graphe_old != NULL) { detruire_graphe(graphe_old); }
 		graphe_old = graphe;
-		graphe = graph1arbre_pi(coordonnees, 0, pi, coordonnees->n);
+		graphe = graph1arbre_pi(coordonnees, 0, distance_tab, pi);
 		if (pi_old != NULL) { free(pi_old); }
 		pi_old = pi;
 		pi = construire_nouv_pi(pi_old, graphe, distance_tab, lambda, ub);
