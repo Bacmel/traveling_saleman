@@ -1,6 +1,4 @@
 #include "utils.h"
-#include <math.h>
-#include "prim.h"
 
 double distance(Coordonnees c, int s1, int s2) {
 	struct coord *s1Coord = c->clist[s1];
@@ -80,4 +78,15 @@ void graphe_supprimer_arete(Graphe g, int s1, int s2){
     g->alist[s1]->d--;
     a_remove(g->alist[s2]->list, g->alist[s2]->d, s1);
     g->alist[s2]->d--;
+}
+
+void longueur(Coordonnees c, Graphe g){
+    double l = 0.0;
+    for(size_t i=0; i<g->n;i++){
+        for(size_t j=0;j<g->alist[i]->d;j++){
+            l+=distance(c, i, g->alist[i]->list[j]);
+        }
+    }
+    l/=2;
+    printf("Longueur de la tournee : %lf\n", l);
 }

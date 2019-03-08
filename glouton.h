@@ -2,6 +2,8 @@
 #define GLOUTON_H
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <math.h>
 #include "utils.h"
 #include "union_find.h"
 #include "graph.h"

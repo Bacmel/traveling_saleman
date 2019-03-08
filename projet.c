@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <time.h>
 #include "graph.h"
 #include "tas.h"
 #include "prim.h"
@@ -23,12 +24,20 @@
 /* le contenu du fichier main est donne ici a titre de demonstration */
 /* du fonctionnement des differentes fonctions et procedures */
 int main(int argc, char *argv[]) {
+	srand(time(NULL));
 	Graphe g;
 	Coordonnees c;
 
 	/* lecture de l'instance */
 	c = lecture_instance(argv[1]);
+	g = algo(c);
+	longueur(c, g);
+	afficher_graphe(c,g);
 	g = algo2opt(c);
+	longueur(c, g);
+	afficher_graphe(c, g);
+	g = resim(c);
+	longueur(c, g);
 	//g = borneInferieur(c);
 	//g = opt(c);
 	/*double pi[c->n];

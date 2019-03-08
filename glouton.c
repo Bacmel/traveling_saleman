@@ -103,6 +103,7 @@ void change_hamiltonien(Hamiltonien* H, size_t i, size_t i2, size_t j, size_t j2
         H->pred[k] = temp;
     }
 }
+
 void detruire_hamiltonien(Hamiltonien* H){
     free(H->succ);
     free(H->pred);
@@ -168,4 +169,33 @@ Graphe algo2opt(Coordonnees c){
 Graphe resim(Coordonnees c){
     Graphe g = algo(c);
     Hamiltonien* H = creation_hamiltonien(g);
+    double To = 1800;
+    for(To/=g->n;To>0.01;To*=0.99){
+        printf("T : %lf\n", To);
+        bool amelioration = true;
+        while(amelioration){
+            amelioration = false;
+            double ei = 0.0, ef = 0.0;
+            size_t t=0, i=0, j=0;
+            for(i=rand()%g->n; t<g->n; i=H->succ[i]){
+                for(j=H->succ[i];j!=i;j=H->succ[j]){
+                    if(j!=i && j!=H->succ[i] && j!=H->pred[i]){
+                        ei = distance(c, i, H->succ[i]) + distance(c, j, H->succ[j]);
+                        ef = distance(c, i, j) + distance(c, H->succ[i], H->succ[j]);
+                        if(ei>ef || rand()/(double)RAND_MAX<exp((ei-ef)/(To))){
+                            graphe_supprimer_arete(g, i, H->succ[i]);
+                            graphe_supprimer_arete(g, j, H->succ[j]);
+                            graphe_ajouter_arete(g, i, j);
+                            graphe_ajouter_arete(g, H->succ[i], H->succ[j]);
+                            change_hamiltonien(H, i, H->succ[i], j, H->succ[j]);
+//                            amelioration = true;
+                        }
+                    }
+                }
+                t++;
+            }
+        }
+    }
+    detruire_hamiltonien(H);
+    return g;
 }

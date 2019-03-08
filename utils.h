@@ -1,6 +1,9 @@
 #include "graph.h"
 #include<stdbool.h>
 #include<stdlib.h>
+#include <math.h>
+#include <stdio.h>
+#include "prim.h"
 
 #ifndef UTILS_H
 #define UTILS_H
@@ -12,4 +15,5 @@ double score(Coordonnees c, double pi[], int s1, int s2);
 Graphe graph1arbre_pi(Coordonnees c, int s, double pi[], int taillePi);
 void a_remove(int *tab, int n, int s);
 void graphe_supprimer_arete(Graphe g, int s1, int s2);
+void longueur(Coordonnees c, Graphe g);
 #endif
