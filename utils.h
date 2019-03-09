@@ -5,7 +5,16 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-/* Calcul la distance entre deux sommets 's1' et 's2' */
+#define DEBUG_MODE 0
+
+/**
+ * Calcul la distance entre deux sommets
+ *
+ * @param c Coordonnées de tous les sommets (doit au moins comprendre s1 et s2)
+ * @param s1 Un sommet
+ * @param s2 Un sommet
+ * @return distance euclidienne entre les sommets s1 et s2
+ */
 double distance(Coordonnees c, int s1, int s2);
 
 /**
