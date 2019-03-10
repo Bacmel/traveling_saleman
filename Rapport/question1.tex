@@ -1,3 +1,1 @@
-L'algorithme de Prim a pour complexité $\Theta((n+m)\log(n))$ 
-
-"démonstration dans le cours"
+L'algorithme de prim consiste à sélectionner l'arête de poid minimum tant qu'il y a des sommets qui ne font pas partie du graphe. En utilisant, une liste de voisin pour représenter le graphe, et un tas pour lister les voisins, à chaque itération, on récupère le tête du tas qui se réalise en $O(\log(n))$, puis on met à jour les poids des voisins du sommet sélectionné qui demande une boucle sur les voisins et le repositionnement du sommet dans le tas cette dernière opération est réalisée en $O(\log(n))$. Donc pour un tour de boucle l'opération est en $O((1 + deg(s))\times\log(n))$. Il y a $n$ tour de boucle pour que l'arbre soit couvrant. Donc l'algorithme de Prim a une complexité de $O((n+m) \log(n))$ pour un graphe sous forme de liste de voisins et en utilisant un tas.
