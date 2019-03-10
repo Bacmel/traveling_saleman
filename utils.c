@@ -1,7 +1,4 @@
-#include <math.h>
-#include <stdio.h>
 #include "utils.h"
-#include "prim.h"
 
 double distance(Coordonnees c, int s1, int s2) {
 	struct coord *s1Coord = c->clist[s1]; // Coordonnées du sommet 1
@@ -43,7 +40,6 @@ void affiche_mat(double **mat, int taille_mat) {
 
 void detruire_distance_tab(double ***pDistances, int taille_distances) {
 	Sommet i;
-
 	for (i = 0; i < taille_distances; ++i) {
 		free((*pDistances)[i]);
 	}
@@ -52,7 +48,6 @@ void detruire_distance_tab(double ***pDistances, int taille_distances) {
 
 bool est_present(int *tab, int n, int i) {
 	if (tab == NULL) { return false; }
-
 	int j;
 	for (j = 0; j < n; j++) {
 		if (tab[j] == i) {
@@ -60,4 +55,38 @@ bool est_present(int *tab, int n, int i) {
 		}
 	}
 	return false;
+}
+
+void a_remove(int *tab, int n, int s){
+    int hasRemove = 0;
+    int i;
+
+    for(i = 0; i < n-1 ; i++){
+        if(tab[i] == s){
+            hasRemove = 1;
+        }
+        if(hasRemove) {
+            tab[i] = tab[i + 1];
+        }
+    }
+}
+
+void graphe_supprimer_arete(Graphe g, int s1, int s2){
+    if(!graphe_arete_existe(g, s1, s2)) { return; }
+
+    a_remove(g->alist[s1]->list, g->alist[s1]->d, s2);
+    g->alist[s1]->d--;
+    a_remove(g->alist[s2]->list, g->alist[s2]->d, s1);
+    g->alist[s2]->d--;
+}
+
+void longueur(Coordonnees c, Graphe g){
+    double l = 0.0; //Longueur total
+    for(size_t i=0; i<g->n;i++){
+        for(size_t j=0;j<g->alist[i]->d;j++){
+            l+=distance(c, i, g->alist[i]->list[j]);
+        }
+    }
+    l/=2; // A la fin des deux boucles, l=2*(la longueur de la tournée))
+    printf("Longueur de la tournee : %lf\n", l);
 }

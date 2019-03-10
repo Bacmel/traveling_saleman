@@ -1,6 +1,9 @@
 #include "graph.h"
 #include<stdbool.h>
 #include<stdlib.h>
+#include <math.h>
+#include <stdio.h>
+#include "prim.h"
 
 #ifndef UTILS_H
 #define UTILS_H
@@ -50,5 +53,30 @@ void detruire_distance_tab(double ***pDistances, int taille_distances);
  * @return 'true' si l'élément est présent au moins une fois, 'false' sinon
  */
 bool est_present(int *tab, int n, int i);
+
+/**
+ * Supprime l'élément i dans le tableau tab
+ *
+ * @param tab Tableau à tester (peut être NULL)
+ * @param n Taille du tableau
+ * @param s sommet
+ */
+void a_remove(int *tab, int n, int s);
+
+/**
+ * Supprime l'arete entre s1 et s2 du graphe g
+ *
+ * @param g Graphe etudié
+ * @param s1 et s2 les deux sommets relié par l'arete à supprimer
+ */
+void graphe_supprimer_arete(Graphe g, int s1, int s2);
+
+/**
+ * Affiche la longueur du graphe donné
+ *
+ * @param c Coordonnées des points
+ * @param g Graphe etudié
+ */
+void longueur(Coordonnees c, Graphe g);
 
 #endif
