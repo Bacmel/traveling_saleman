@@ -9,7 +9,6 @@ Arete* creation_arete(Coordonnees c){
             a[k].s2 = j;
             a[k].dist = distance(c, i, j);
             k++;
-
         }
     }
     return a;
@@ -172,28 +171,23 @@ Graphe resim(Coordonnees c){
     double To = 1800;
     for(To/=g->n;To>0.01;To*=0.99){
         printf("T : %lf\n", To);
-        bool amelioration = true;
-        while(amelioration){
-            amelioration = false;
-            double ei = 0.0, ef = 0.0;
-            size_t t=0, i=0, j=0;
-            for(i=rand()%g->n; t<g->n; i=H->succ[i]){
-                for(j=H->succ[i];j!=i;j=H->succ[j]){
-                    if(j!=i && j!=H->succ[i] && j!=H->pred[i]){
-                        ei = distance(c, i, H->succ[i]) + distance(c, j, H->succ[j]);
-                        ef = distance(c, i, j) + distance(c, H->succ[i], H->succ[j]);
-                        if(ei>ef || rand()/(double)RAND_MAX<exp((ei-ef)/(To))){
-                            graphe_supprimer_arete(g, i, H->succ[i]);
-                            graphe_supprimer_arete(g, j, H->succ[j]);
-                            graphe_ajouter_arete(g, i, j);
-                            graphe_ajouter_arete(g, H->succ[i], H->succ[j]);
-                            change_hamiltonien(H, i, H->succ[i], j, H->succ[j]);
-//                            amelioration = true;
-                        }
+        double ei = 0.0, ef = 0.0;
+        size_t t=0, i=0, j=0;
+        for(i=rand()%g->n; t<g->n; i=H->succ[i]){
+            for(j=H->succ[i];j!=i;j=H->succ[j]){
+            if(j!=i && j!=H->succ[i] && j!=H->pred[i]){
+                    ei = distance(c, i, H->succ[i]) + distance(c, j, H->succ[j]);
+                    ef = distance(c, i, j) + distance(c, H->succ[i], H->succ[j]);
+                    if(ei>ef || rand()/(double)RAND_MAX<exp((ei-ef)/(To))){
+                        graphe_supprimer_arete(g, i, H->succ[i]);
+                        graphe_supprimer_arete(g, j, H->succ[j]);
+                        graphe_ajouter_arete(g, i, j);
+                        graphe_ajouter_arete(g, H->succ[i], H->succ[j]);
+                        change_hamiltonien(H, i, H->succ[i], j, H->succ[j]);
                     }
                 }
-                t++;
             }
+            t++;
         }
     }
     detruire_hamiltonien(H);
