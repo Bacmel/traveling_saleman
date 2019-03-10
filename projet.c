@@ -38,12 +38,12 @@ int main(int argc, char *argv[]) {
 	end1 = clock();
 	
 	start2 = clock();
-	g = borne_inferieur(c, 5360);
+	//g = borne_inferieur(c, 7542);
 	end2 = clock();
 	
 	start3 = clock();
 	g = algo(c);
-	end3 = clock()
+	end3 = clock();
 	
 	start4 = clock();
 	g = algo2opt(c);
