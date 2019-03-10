@@ -1,0 +1,43 @@
+Soit un graphe $G = (S,A)$ à qui on assigne un poid $\pi(s)$ à chacun de ses sommets $s \in S$. On définit la valeur $w_\pi(\{s,s'\})$ d'une arête $\{s,s'\}$ par : $w_\pi(\{s,s'\})=d(s,s')+\pi(s)+\pi(s')$, où $d(s,s')$ et la distance Euclidienne entre les deux points correspondants.
+
+Montrons qu'une tournée optimale pour le problème du voyageur de commerce sur le graphe $G$ muni des valeurs $d(s,s')$ le reste sur le graphe $G$ muni des valeurs $w_\pi(\{s,s'\})$ et inversement.
+
+Soient $T$ une tournée du graphe $G$ muni des valeurs $d(s,s')$ et $v(T)$ la longueur de cette tournée. De même, soient $T'$ une tournée du graphe $G$ muni des valeurs $w_\pi(\{s,s'\})$ et $v(T')$ la longueur de cette tournée\\
+
+
+\begin{equation*}
+\begin{array}{rcl}
+v(T') &= &\underset{\{s, s'\}\in T'}{\sum}w_\pi(\{s,s'\}) \\
+v(T') &= &\underset{\{s, s'\}\in T'}{\sum}d(s,s')+\pi(s)+\pi(s') \\
+v(T') &= &\underset{\{s, s'\}\in T'}{\sum}d(s,s')+\underset{\{s, s'\}\in T}{\sum}\pi(s)+\pi(s')\\
+\end{array}
+\end{equation*}
+Sachant que $\underset{\{s, s'\}\in T}{\sum}d(s,s')=v(T)$ et que $\underset{\{s, s'\}\in T}{\sum}\pi(s)+\pi(s')=2\underset{s\in S}{\sum}\pi(s)=C^{st}$, nous avons donc :
+\begin{equation*}
+\boxed{
+\begin{array}{rcl}
+v(T') &= &v(T)+2\underset{s\in S}{\sum}\pi(s)
+\end{array}
+}
+\end{equation*}
+
+Soit maintenant $T'_{opt}$ une tournée optimale pour le problème du voyageur du commerce sur le graphe $G$ muni des valeurs $w_\pi(\{s,s'\})$ et définit comme suit :
+\begin{equation*}
+\begin{array}{rcl}
+T'_{opt} &= &\underset{T'}{\mathrm{argmin}}\left(v(T')\right) \\
+T'_{opt} &= &\underset{T}{\mathrm{argmin}}\left(v(T)+2\underset{s\in S}{\sum}\pi(s)\right)
+\end{array}
+\end{equation*}
+
+Comme $\underset{\{s, s'\}\in T}{\sum}\pi(s)+\pi(s')=2\underset{s\in S}{\sum}\pi(s)=C^{st}$,
+
+\begin{equation*}
+\boxed{
+\begin{array}{rcl}
+T'_{opt} &= &\underset{T}{\mathrm{argmin}}\left(v(T)\right) \\
+T'_{opt} &= &T_{opt}
+\end{array}
+}
+\end{equation*}
+
+Une tournée optimale pour le problème du voyageur du commerce sur le graphe $G$ muni des valeurs $w_\pi(\{s,s'\})$ le reste sur le graphe $G$ muni des valeurs $d(s,s')$, et inversement.

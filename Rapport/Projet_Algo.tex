@@ -1,0 +1,100 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Original Source: http://www.howtotex.com
+% Date: February 2014
+% 
+% This is a title page template which be used for articles & reports.
+% 
+% This is the modified version of the original Latex template from
+% aforementioned website.
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{report}
+\usepackage[a4paper]{geometry}
+\usepackage[myheadings]{fullpage}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx, wrapfig, subcaption, setspace, booktabs}
+\usepackage[T1]{fontenc}
+\usepackage{multicol}
+\usepackage{longtable}
+\usepackage[utf8]{inputenc}
+\usepackage[font=normalsize, labelfont=bf]{caption}
+\usepackage{lmodern}
+%\usepackage{fourier}
+\usepackage[protrusion=true, expansion=true]{microtype}
+\usepackage[french]{babel}
+\usepackage{sectsty}
+\usepackage{url, lipsum}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\onehalfspacing
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+%-------------------------------------------------------------------------------
+% HEADER & FOOTER
+%-------------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\setlength\headheight{15pt}
+\fancyhead[L]{Projet Algorithmique - Traveling Saleman Problem}
+\fancyhead[R]{\includegraphics[width = 20mm]{LSU.png}
+			\includegraphics[width = 29mm]{PSH.png}}
+\fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+%-------------------------------------------------------------------------------
+% TITLE PAGE
+%-------------------------------------------------------------------------------
+
+\begin{document}
+
+\title{
+	    \normalsize \textsc{ROB3 S6 - Algorithmique}
+		\\ [1.0cm]
+		\HRule{0.5pt} \\
+		\LARGE \textbf{\uppercase{Problème du voyageur\\du commerce}}
+		\HRule{2pt} \\ [0.5cm]
+		\normalsize \today{} \vspace*{5\baselineskip}}
+\date{}
+\author{
+		Florian CORMÉE \\
+		Hugo DUARTE}
+\maketitle
+\tableofcontents
+%\sectionfont{\scshape}
+\newpage
+
+\section*{Question 1}
+\addcontentsline{toc}{section}{Question 1}
+\input{question1.tex}
+
+\section*{Question 3}
+\addcontentsline{toc}{section}{Question 3}
+\input{question3.tex}
+
+\section*{Question 5}
+\addcontentsline{toc}{section}{Question 5}
+\input{question5.tex}
+
+\section*{Question 6}
+\addcontentsline{toc}{section}{Question 6}
+\input{question6.tex}
+
+\section*{Question 9}
+\addcontentsline{toc}{section}{Question 9}
+\input{question9.tex}
+
+\section*{Question 11}
+\addcontentsline{toc}{section}{Question 11}
+\input{question11.tex}
+
+\newpage
+\section*{Comparaison d'algorithmes}
+\addcontentsline{toc}{section}{Comparaison d'algorithmes}
+\input{question12.tex}
+
+\end{document}

@@ -1,0 +1,34 @@
+Montrons que
+\begin{equation}\label{eq_quest6}
+\min_{T \text{ un 1-arbre}} \omega_{\pi}(T) - 2 \sum_{s \in S} \pi(s) \leq \min_{C \text{ un cycle Hamiltonien}} d(C)
+\end{equation}
+Où $ \pi(s) $ est le poid associé au sommet $ s $, $ \omega_{\pi}(T) = \sum_{\{s,s'\} \in T} \omega_{\pi}(\{s, s'\}) $ avec $ \omega_{\pi}(\{s, s'\}) = d(\{s, s'\}) + \pi(s) + \pi(s') $ où $ d(\{s, s'\}) $ est la distance euclidienne entre les sommets $ s $ et $ s' $. $ d(C) = \sum_{\{s,s'\} \in C} d(\{s, s'\}) $.
+
+Soient $ T = \arg\min_{T \text{ un 1-arbre}} \omega_{\pi}(T) - 2 \sum_{s \in S} \pi(s)$ et $ C = \arg\min_{C \text{ un cycle Hamiltonien}} d(C) $.
+
+D'après la question 5, une tournée pour le problème du voyageur du commerce muni des distances euclidienne reste optimale si le graphe est muni des valeurs $ \omega_{\pi}(\{s, s'\}) $.Donc,
+\begin{equation}
+C = \arg\min_{C \text{ un cycle Hamiltonien}} d(C) = \arg\min_{C \text{ un cycle Hamiltonien}} \omega_{\pi}(C)
+\end{equation}
+
+Or, d'après la quesiton 3, la valeur d'un 1-arbre optimal est une borne inférieur de la valeur d'une tournée optimale. Donc,
+\begin{align}
+	\omega_{\pi}(T)                           & \leq \omega_{\pi}(C)                           \\
+	\omega_{\pi}(T) - 2 \sum_{s \in S} \pi(s) & \leq \omega_{\pi}(C) - 2 \sum_{s \in S} \pi(s) \label{eq_quest6_1}
+\end{align}
+
+Par définition,
+\begin{align}
+	\omega_{\pi}(C) & =  \sum_{\{s,s'\} \in C} \omega_{\pi}(\{s, s'\})                                  \\
+	\omega_{\pi}(C) & =  \sum_{\{s,s'\} \in C} d(\{s, s'\}) + \pi(s) + \pi(s')                          \\ \intertext{Or $ C $ est un cycle Hamiltonien donc $ \forall s \in S, \deg(s) = 2 $.}
+	\omega_{\pi}(C) & = \sum_{\{s,s'\} \in C} d(\{s, s'\}) + 2 \sum_{s \in S} \pi(s)\label{eq_quest6_2}
+\end{align}
+
+On déduit des équations \eqref{eq_quest6_1} et \eqref{eq_quest6_2} la relation suivante.
+\begin{align}
+\omega_{\pi}(T) - 2 \sum_{s \in S} \pi(s) & \leq \sum_{\{s,s'\} \in C} d(\{s, s'\}) + 2 \sum_{s \in S} \pi(s) - 2 \sum_{s \in S} \pi(s)\\
+\omega_{\pi}(T) - 2 \sum_{s \in S} \pi(s) & \leq \sum_{\{s,s'\} \in C} d(\{s, s'\})\\
+\omega_{\pi}(T) - 2 \sum_{s \in S} \pi(s) & \leq d(C)
+\end{align}
+
+Donc pour tout jeu de poids $ \pi $, $ T $ est une borne inférieure de la valeur d'une tournée optimale.
