@@ -22,16 +22,17 @@ typedef struct graphe *Graphe;
 
 /* type struct coordonnees */
 struct coordonnees {
-	int n;		      /* nombre de points */
-	char nom[256];	      /* nom de l'instance */
-	struct coord {
-		float coordx; /* coordonnee sur l'axe x */
-		float coordy; /* coordonnee sur l'axe y */
-	} *clist[1];
+    int n;              /* nombre de points */
+    char nom[256];          /* nom de l'instance */
+    struct coord {
+        float coordx; /* coordonnee sur l'axe x */
+        float coordy; /* coordonnee sur l'axe y */
+    } *clist[1];
 };
 
 /*type coordonnees */
 typedef struct coordonnees *Coordonnees;
+typedef int Sommet;
 
 /*************************************/
 /* 	!!!!!!!	ATTENTION !!!!!!     */
@@ -59,6 +60,7 @@ void graphe_ajouter_arete(Graphe g, int s1, int s2);
 
 /* retourne le nombre de sommets/aretes d'un graphe g*/
 int graphe_nb_sommets(Graphe g);
+
 int graphe_nb_aretes(Graphe g);
 
 /* retourne le degre d'un sommet s dans g*/
@@ -71,21 +73,21 @@ int graphe_arete_existe(Graphe g, int s1, int s2);
 Graphe conversion_tour_graphe(char *nom_tour);
 
 /* cree un tableau de n coordonnees numerotees de 0 a n-1 et toutes a (0,0) */
-Coordonnees creer_coordonnees(int n,char *nom);
+Coordonnees creer_coordonnees(int n, char *nom);
 
 /* libere la memoire utilisee par les coordonnees c*/
 void detruire_coordonnees(Coordonnees c);
 
 /* lit une instance dans le fichier nom.tsp, la charge en memoire dans Coordonnees */
 /* et cree un fichier nom.gnu pour l'affichage */
-Coordonnees lecture_instance(char* nom);
+Coordonnees lecture_instance(char *nom);
 
 /* affiche une instance apres lecture de l'instance nom.tsp */
 /* a partir du fichier nom.gnu qui a ete genere par lecture_instance */
-void afficher_instance(char* nom);
+void afficher_instance(char *nom);
 
 /* affiche une tournee nom_tour.tour */
-void afficher_tour(Coordonnees c, char* nom_tour);
+void afficher_tour(Coordonnees c, char *nom_tour);
 
 /* affiche le graphe g */
 void afficher_graphe(Coordonnees c, Graphe g);

@@ -2,3 +2,4 @@
 *.gnu
 *.o
 main*
+*.tsp
