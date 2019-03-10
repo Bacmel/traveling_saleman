@@ -1,16 +1,82 @@
 #include "graph.h"
 #include<stdbool.h>
 #include<stdlib.h>
+#include <math.h>
+#include <stdio.h>
+#include "prim.h"
 
 #ifndef UTILS_H
 #define UTILS_H
 
-typedef int Sommet;
+#define DEBUG_MODE 0
 
-/* Calcul la distance entre deux sommets 's1' et 's2' */
+/**
+ * Calcul la distance entre deux sommets
+ *
+ * @param c Coordonnées de tous les sommets (doit au moins comprendre s1 et s2)
+ * @param s1 Un sommet
+ * @param s2 Un sommet
+ * @return distance euclidienne entre les sommets s1 et s2
+ */
 double distance(Coordonnees c, int s1, int s2);
-bool est_present(int* tab, int n, int i);
-Graphe graph1arbre(Coordonnees c, int s);
-double score(Coordonnees c, double pi[], int s1, int s2);
-Graphe graph1arbre_pi(Coordonnees c, int s, double pi[], int taillePi);
+
+/**
+ * Calcule les distances des points entre eux et les met dans une matrice de taille (c->n)²
+ *
+ * @param coordonnees Coordonnées des points
+ * @return Matrice des distances entre tous les points
+ */
+double **creer_distance_tab(Coordonnees coordonnees);
+
+/**
+ * Affiche une matrice carrée dans la console
+ *
+ * @param mat Matrice a afficher
+ * @param taille_mat Taille de la matrice
+ */
+void affiche_mat(double **mat, int taille_mat);
+
+/**
+ * Detruit la matrice des distances
+ *
+ * @param pDistances Un pointeur vers la matrice des distances
+ * @param taille_distances Taille de la matrice des distances
+ */
+void detruire_distance_tab(double ***pDistances, int taille_distances);
+
+/**
+ * Prédicat de la présence de l'élément i dans le tableau tab
+ *
+ * @param tab Tableau à tester (peut être NULL)
+ * @param n Taille du tableau
+ * @param i Elément à chercher
+ * @return 'true' si l'élément est présent au moins une fois, 'false' sinon
+ */
+bool est_present(int *tab, int n, int i);
+
+/**
+ * Supprime l'élément i dans le tableau tab
+ *
+ * @param tab Tableau à tester (peut être NULL)
+ * @param n Taille du tableau
+ * @param s sommet
+ */
+void a_remove(int *tab, int n, int s);
+
+/**
+ * Supprime l'arete entre s1 et s2 du graphe g
+ *
+ * @param g Graphe etudié
+ * @param s1 et s2 les deux sommets relié par l'arete à supprimer
+ */
+void graphe_supprimer_arete(Graphe g, int s1, int s2);
+
+/**
+ * Affiche la longueur du graphe donné
+ *
+ * @param c Coordonnées des points
+ * @param g Graphe etudié
+ */
+void longueur(Coordonnees c, Graphe g);
+
 #endif

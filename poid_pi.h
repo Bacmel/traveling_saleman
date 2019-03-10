@@ -4,35 +4,70 @@
 #include "graph.h"
 #include "utils.h"
 
-#define UB 7542
-
-
 /**
- * Calcule les distances des points entre eux et les met dans une matrice de taille c->n²
- * @param c Coordonnées des points
- * @return Matrice des distances entre tous les points
+ * Calcule le 'poid' de l'arête {s1,s2}
+ *
+ * Si 'pi' est à NULL alors le poid est la distance entre s1 et s2
+ * @param distance_tab Matrice des distances entre les sommets du graphe
+ * @param pi Tableau des poids de chaque sommet du graphe (peut être NULL)
+ * @param s1 Sommet de l'arête
+ * @param s2 Sommet de l'arête
+ * @return le 'poid' de l'arête {s1, s2}
  */
-double **creer_distance_tab(Coordonnees c);
-
-void affiche_mat(double **mat, int taille_mat);
-
-/**
- * Detruit le tableau des distances
- * @param pDistances Un pointeur vers la matrice des distances
- * @param taille_distances Taille de la matrice des distances
- */
-void detruire_distance_tab(double ***pDistances, int taille_distances);
-
 double omega_pi(double **distance_tab, double pi[], Sommet s1, Sommet s2);
 
-double omega_pi_graphe(Graphe g, double **distance_tab, double pi[]);
+/**
+ * Calcule le 'poid' du graphe
+ *
+ * Somme le poid de chaque arête du graphe
+ * @param graphe Graphe dont on désir connaitre le poid
+ * @param distance_tab Matrice des distances entre les sommets du graphe
+ * @param pi Tableau des poids de chaque sommet du graphe
+ * @return le 'poid' du graphe
+ */
+double omega_pi_graphe(Graphe graphe, double **distance_tab, double pi[]);
 
-double t(Graphe g, double **distance_tab, double pi[], double lambda);
+/**
+ * Calcule le coefficient 't' à l'itération i
+ *
+ * @param graphe Graphe de l'itération i-1
+ * @param distance_tab Matrice des distances entre les sommets du graphe
+ * @param pi Tableau des poids de chaque sommet du graphe à l'itération i-1
+ * @param lambda Coefficient multiplicateur à l'itération i-1
+ * @param ub Longueur de la tournée optimale
+ * @return le coefficient 't' à l'itération i
+ */
+double t(Graphe graphe, double **distance_tab, double pi[], double lambda, double ub);
 
-double pi_s(Sommet s, double pi[], Graphe g, double **distance_tab, double lambda);
+/**
+ * Calcule le 'poid' du sommet 's' à l'itération i
+ *
+ * @param sommet Sommet dont on souhaite connaitre le 'poid' à l'itération i
+ * @param pi Tableau des poids de chaque sommet du graphe à l'itération i-1
+ * @param graphe Graphe de l'itération i-1
+ * @param t coefficient 't' à l'itération i
+ * @return le 'poid' du sommet 's' à l'itération i
+ */
+double pi_s(Sommet sommet, double *pi, Graphe graphe, double t);
 
-double *construire_nouv_pi(double pi[], Graphe g, double **distance_tab, double lambda);
+/**
+ * Construit le tableau des poids pi pour chaque sommet du graphe à l'itération i
+ *
+ * @param pi Tableau des poids de chaque sommet du graphe à l'itération i-1
+ * @param graphe Graphe de l'itération i-1
+ * @param distance_tab Matrice des distances entre les sommets du graphe
+ * @param lambda Coefficient multiplicateur à l'itération i-1
+ * @param ub Longueur de la tournée optimale
+ * @return le tableau des poids pi pour chaque sommet du graphe à l'itération i
+ */
+double *construire_nouv_pi(double pi[], Graphe graphe, double **distance_tab, double lambda, double ub);
 
-Graphe borne_inferieur(Coordonnees c);
+/**
+ * Construit le 1-arbre s'approchant au plus la tournée
+ * @param coordonnees Coordonnées de chaque sommet faisant parti du graphe à constuire
+ * @param ub Valeur de la tournée optimale
+ * @return le 1-arbre s'approchant au plus la tournée
+ */
+Graphe borne_inferieur(Coordonnees coordonnees, double ub);
 
 #endif //POID_PI_H
