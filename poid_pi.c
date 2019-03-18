@@ -75,7 +75,7 @@ Graphe borne_inferieur(Coordonnees coordonnees, double ub) {
 	for (s = 0; s < coordonnees->n; s++) { pi[s] = 0; }// initialisation du tableau pi à 0
 
 	while (nextUpdate > 1) {
-		printf("Tour %d\n", iter);
+		//printf("Tour %d\n", iter);
 		if (graphe_old != NULL) { detruire_graphe(graphe_old); }
 		graphe_old = graphe;
 		graphe = graph1arbre_pi(coordonnees, 0, distance_tab, pi);
@@ -87,17 +87,17 @@ Graphe borne_inferieur(Coordonnees coordonnees, double ub) {
 			lambda /= 2;
 			nextUpdate /= 2;
 			updateIter += nextUpdate;
-			printf("update de lambda! lambda= %lf, nextUpdate = %d\n", lambda, nextUpdate);
+			//printf("update de lambda! lambda= %lf, nextUpdate = %d\n", lambda, nextUpdate);
 		}
 		iter++;
 	}
 
 	if (pi_old != NULL) {
 		longueur = omega_pi_graphe(graphe, distance_tab, pi_old);
-		printf("Omega_pi(graphe) = %lf\npi : ", longueur);
+		//printf("Omega_pi(graphe) = %lf\npi : ", longueur);
 		for (s = 0; s < coordonnees->n; ++s) {
 			longueur -= 2 * pi_old[s];
-			printf("%lf, ", pi_old[s]);
+			//printf("%lf, ", pi_old[s]);
 		}
 		printf("\nScore atteint: %lf\n", longueur);
 	}
